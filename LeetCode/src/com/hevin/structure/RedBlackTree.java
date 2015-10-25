@@ -75,10 +75,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> {
     }
 
     private boolean isRed(Node x) {
-        if (x == null) {
-            return false;
-        }
-        return x.color;
+        return x != null && x.color;
     }
 
     private class Node {
