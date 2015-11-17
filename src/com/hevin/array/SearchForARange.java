@@ -9,26 +9,36 @@ package com.hevin.array;
  * return [3, 4].
  */
 public class SearchForARange {
-    public static int[] searchRange(int[] nums, int target) {
-        int start = findFirstEqualNum(nums, target);
-        if (start == nums.length || nums[start] != target) {
-            return new int[]{-1, -1};
-        }
-        return new int[]{start, findFirstEqualNum(nums, target + 1) - 1};
-    }
-
-    private static int findFirstEqualNum(int[] arr, int target) {
+    public int[] searchRange(int[] nums, int target) {
+        int[] result = new int[]{-1, -1};
         int lo = 0;
-        int hi = arr.length - 1;
+        int hi = nums.length - 1;
         int mid;
-        while (lo <= hi) {
-            mid = lo + ((hi - lo) >> 1);
-            if (arr[mid] < target) {
+        // search for the left one.
+        while (lo < hi) {
+            mid = lo + (hi - lo) / 2;
+            if (nums[mid] < target) {
                 lo = mid + 1;
             } else {
                 hi = mid;
             }
         }
-        return lo;
+        if (nums[lo] != target) {
+            return result;
+        } else {
+            result[0] = lo;
+        }
+        // search for the right one.
+        hi = nums.length - 1;
+        while (lo < hi) {
+            mid = lo + (hi - lo) / 2 + 1;
+            if (nums[mid] > target) {
+                hi = mid - 1;
+            } else {
+                lo = mid;
+            }
+        }
+        result[1] = hi;
+        return result;
     }
 }
