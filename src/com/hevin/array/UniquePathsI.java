@@ -8,7 +8,7 @@ package com.hevin.array;
  */
 public class UniquePathsI {
     public static int uniquePath(int m, int n) {
-        // 使用动态规划求解，每个节点的路径等于其左边和上边节点的路径数之和
+        // 使用动态规划求解
         int[][] dp = new int[m][n];
         for (int i = 0; i < m; i++) {
             dp[i][0] = 1;
