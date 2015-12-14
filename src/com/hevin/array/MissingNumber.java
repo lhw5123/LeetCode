@@ -8,13 +8,15 @@ package com.hevin.array;
  */
 public class MissingNumber {
     public static int missingNumber(int[] nums) {
-//        int len = nums.length;
-//        int sum = len * (len + 1) / 2;
-//        for (int var : nums) {
-//            sum -= var;
-//        }
-//        return sum;
+        int len = nums.length;
+        int sum = len * (len + 1) / 2;  // 可能会造成溢出
+        for (int var : nums) {
+            sum -= var;
+        }
+        return sum;
+    }
 
+    public static int missingNumber2(int[] nums) {
         // XOR
         int res = nums.length;
         for (int i = 0; i < nums.length; i++) {

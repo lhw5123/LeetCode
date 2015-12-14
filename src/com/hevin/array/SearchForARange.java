@@ -9,7 +9,7 @@ package com.hevin.array;
  * return [3, 4].
  */
 public class SearchForARange {
-    public int[] searchRange(int[] nums, int target) {
+    public static int[] searchRange(int[] nums, int target) {
         int[] result = new int[]{-1, -1};
         int lo = 0;
         int hi = nums.length - 1;
