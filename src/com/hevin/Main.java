@@ -1,13 +1,13 @@
 package com.hevin;
 
-import com.hevin.array.SearchForARange;
-import com.hevin.array.SearchInRotatedSortedArrayII;
+import com.hevin.sort.LCD;
 
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 2, 2, 2, 3, 4};
-        System.out.println(Arrays.toString(SearchForARange.searchRange(nums, 2)));
+        String[] strs = new String[]{"4PGC938", "2IYE230", "1ICK750", "3ATW723"};
+        LCD.sort(strs, 7);
+        System.out.println(Arrays.toString(strs));
     }
 }
