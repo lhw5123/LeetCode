@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class MajorityElementII {
     /**
-     * Use Boyer-Moore majority vote algorithm.
+     * Use Boyer-Moore majority vote algorithm.ih
      * @param nums
      * @return
      */
