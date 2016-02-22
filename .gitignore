@@ -4,3 +4,7 @@ src/com/hevin/Main.java
 src/com/hevin/Main.java
 
 .idea/codeStyleSettings.xml
+
+.idea/workspace.xml
+
+*.xml
