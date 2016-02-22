@@ -1,22 +1,16 @@
 package com.hevin;
 
-<<<<<<< HEAD
-import com.hevin.sort.LCD;
+import com.hevin.array.CombinationSumII;
 
-import java.util.Arrays;
-
-public class Main {
-    public static void main(String[] args) {
-        String[] strs = new String[]{"4PGC938", "2IYE230", "1ICK750", "3ATW723"};
-        LCD.sort(strs, 7);
-        System.out.println(Arrays.toString(strs));
-=======
-import com.hevin.array.RemoveDuplicatesII;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 1, 1, 2, 2, 2, 3};
-        System.out.println(new RemoveDuplicatesII().removeDuplicates(arr));
->>>>>>> origin/master
+        int[] arr = new int[]{10, 1, 2, 7, 6, 1, 5};
+        CombinationSumII cs2 = new CombinationSumII();
+        List<List<Integer>> ret = cs2.combinationSum2(arr, 8);
+        for (List<Integer> list : ret) {
+            System.out.println(list.toString());
+        }
     }
 }
