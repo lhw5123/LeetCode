@@ -26,7 +26,10 @@ public class RandomizedSet {
         nums = new ArrayList<>();
     }
 
-    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element.
+     *
+     *  HashMap 和 ArrayList 的插入操作都是 O(1).
+     */
     public boolean insert(int val) {
         if (locs.containsKey(val)) {
             return false;
@@ -52,7 +55,10 @@ public class RandomizedSet {
         return true;
     }
 
-    /** Get a random element from the set. */
+    /** Get a random element from the set.
+     *
+     * ArrayList 的 get 操作为 O(1).
+     */
     public int getRandom() {
         return nums.get(random.nextInt(nums.size()));
     }
