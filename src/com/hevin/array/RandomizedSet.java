@@ -29,6 +29,7 @@ public class RandomizedSet {
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element.
      *
      *  HashMap 和 ArrayList 的插入操作都是 O(1).
+     *  注意 HashMap 中是将要插入的值作为 key,当前元素个数作为 value.
      */
     public boolean insert(int val) {
         if (locs.containsKey(val)) {
@@ -39,7 +40,10 @@ public class RandomizedSet {
         return true;
     }
 
-    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    /** Removes a value from the set. Returns true if the set contained the specified element.
+     *
+     *
+     */
     public boolean remove(int val) {
         if (!locs.containsKey(val)) {
             return false;
