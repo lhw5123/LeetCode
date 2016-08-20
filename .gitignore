@@ -10,3 +10,11 @@ src/com/hevin/Main.java
 *.xml
 *.xml
 .idea
+
+out/production/LeetCode/com/hevin/array/SearchA2DMartix.class
+
+*.class
+
+*.class
+
+out/*
