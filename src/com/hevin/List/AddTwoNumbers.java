@@ -10,30 +10,24 @@ package com.hevin.List;
  */
 public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode node1, ListNode node2) {
-        ListNode node = null;
-        int sum;
-        int buf = 0;
-        while (node1 != null || node2 != null) {
-            if (node1 == null) {
-                if (node != null) {
-                    node = new ListNode((node2.val + buf) % 10);
-                } else {
-                    node.next = new ListNode((node2.val + buf) % 10);
-                }
-                if (node2.val + buf > 10) {
-                    buf = 1;
-                }
-                node2 = node2.next;
-            } else if (node2 == null) {
+        ListNode pre = new ListNode(0);
+        ListNode cur = pre;
 
-                node1 = node1.next;
-            } else {
+        int carry = 0;
 
-                node1 = node1.next;
-                node2 = node2.next;
-            }
+        // carry != 0 用于判断最后一位数字相加是否大于 10 而增加一位。
+        while (node1 != null || node2 != null || carry != 0) {
+            int v1 = node1 == null ? 0 : node1.val;
+            int v2 = node2 == null ? 0 : node2.val;
+            int sum = v1 + v2 + carry;
+            carry = sum / 10;
+            cur.next = new ListNode(sum % 10);
+            cur = cur.next;
+            node1 = node1 == null ? null : node1.next;
+            node2 = node2 == null ? null : node2.next;
         }
-        return node;
+
+        return pre.next;
     }
 
     private static class ListNode {
