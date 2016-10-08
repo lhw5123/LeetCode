@@ -1,7 +1,5 @@
 package com.hevin.string;
 
-import java.util.Arrays;
-
 /**
  * Write a function that takes a string as input and returns the string reversed.
  * <p>
