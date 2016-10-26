@@ -10,7 +10,7 @@ package com.hevin.string;
  */
 public class LongestSubstringWithoutRepeatingChars {
     public int lengthOfLongestSubstring(String s) {
-        int lastIndices[] = new int[256];
+        int lastIndices[] = new int[256];   // 存放字符串中每个字符所在的位置。
         for (int i = 0; i < 256; i++) {
             lastIndices[i] = -1;
         }
@@ -21,15 +21,16 @@ public class LongestSubstringWithoutRepeatingChars {
 
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
-            if (lastIndices[cur] < start) {
-                lastIndices[cur] = i;
+
+            if (lastIndices[cur] < start) {     // 当前字符所在位置不是
                 curLen++;
             } else {
                 int lastIndex = lastIndices[cur];
                 start = lastIndex + 1;
                 curLen = i - start + 1;
-                lastIndices[cur] = i;
             }
+
+            lastIndices[cur] = i;
 
             if (curLen > maxLen) {
                 maxLen = curLen;
