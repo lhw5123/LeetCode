@@ -22,12 +22,12 @@ public class LongestSubstringWithoutRepeatingChars {
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
 
-            if (lastIndices[cur] < start) {     // 当前字符所在位置不是
+            if (lastIndices[cur] < start) { // 第一次遇到这个字符
                 curLen++;
             } else {
-                int lastIndex = lastIndices[cur];
+                int lastIndex = lastIndices[cur];   // 当遇到相同的字符，记录下当前的位置。
+                curLen = i - start;
                 start = lastIndex + 1;
-                curLen = i - start + 1;
             }
 
             lastIndices[cur] = i;
