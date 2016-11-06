@@ -14,19 +14,19 @@ import java.util.HashSet;
 public class LongestConsecutive {
     public int longestConsecutive(int[] nums) {
         HashSet<Integer> set = new HashSet<>();
-        for (int i = 0; i < nums.length; i++) {
-            set.add(nums[i]);
+        for (int num : nums) {
+            set.add(num);
         }
 
         int longest = 0;
-        for (int i = 0; i < nums.length; i++) {
-            int down = nums[i] - 1;
-            while (set.contains(down)) {
-                set.remove(down);
+        for (int num : nums) {
+            int down = num - 1;
+            while (set.contains(down)) {    // O(1)
+                set.remove(down);   // O(1)，在之前序列中出现过的就不需再算。
                 down--;
             }
 
-            int up = nums[i] + 1;
+            int up = num + 1;
             while (set.contains(up)) {
                 set.remove(up);
                 up++;
