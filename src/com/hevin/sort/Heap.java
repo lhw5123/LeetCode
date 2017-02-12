@@ -14,7 +14,7 @@ public class Heap {
     // 元素自下而上变化
     private void swim(int k) {
         while (k > 1 && isLess(k / 2, k)) {
-            exch(k / 2, k);
+            exchange(k / 2, k);
             k = k / 2;
         }
     }
@@ -30,7 +30,7 @@ public class Heap {
             if (!isLess(k, i)) {
                 break;
             }
-            exch(k, i);
+            exchange(k, i);
             k = i;
         }
     }
@@ -39,7 +39,7 @@ public class Heap {
         return heap[a] < heap[b];
     }
 
-    private void exch(int a, int b) {
+    private void exchange(int a, int b) {
         int temp = heap[a];
         heap[a] = heap[b];
         heap[b] = temp;
