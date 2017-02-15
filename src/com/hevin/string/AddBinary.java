@@ -35,7 +35,7 @@ public class AddBinary {
             bByte = (j > -1) ? Character.getNumericValue(bChars[j--]) : 0;
             result = aByte ^ bByte ^ carry; // 用位异或操作
             carry = ((aByte + bByte + carry) >= 2) ? 1 : 0;
-            stb.append(result);
+            stb.insert(0, result);
         }
         return stb.toString();
     }
