@@ -1,8 +1,5 @@
 package com.hevin.string;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Given two binary strings, return their sum (also a binary string).
  * <p>
