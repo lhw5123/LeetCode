@@ -1,16 +1,16 @@
 package com.hevin.string;
 
 /**
- * Count the number of segments in a string, where a segment is defined to be a contiguous sequence of non-space characters.
+ * Count the number of segments in a string, where a segment is defined to be a contiguous sequence
+ * of non-space characters.
  * <p>
  * Please note that the string does not contain any non-printable characters.
  * <p>
  * Example:
- * <p>
- * Input: "Hello, my name is John"
- * Output: 5
+ * Input: "Hello, my name is John" Output: 5
  */
 public class CountSegments {
+
     public static int countSegments(String s) {
         int result = 0;
         for (int i = 0; i < s.length(); i++) {
