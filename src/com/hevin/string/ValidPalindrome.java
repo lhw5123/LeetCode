@@ -3,7 +3,7 @@ package com.hevin.string;
 /**
  * Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
  * <p>
- * For example,
+ * For example:
  * "A man, a plan, a canal: Panama" is a palindrome.
  * "race a car" is not a palindrome.
  */
@@ -13,23 +13,24 @@ public class ValidPalindrome {
             return true;
         }
 
-        int head = 0, tail = s.length() - 1;
-        char cHead, cTail;
+        int head = 0;
+        int end = s.length() - 1;
+        char cHead, cEnd;
 
-        while (head <= tail) {
+        while (head < end) {
             cHead = s.charAt(head);
-            cTail = s.charAt(tail);
+            cEnd = s.charAt(end);
 
             if (!Character.isLetterOrDigit(cHead)) {
                 head++;
-            } else if (!Character.isLetterOrDigit(cTail)) {
-                tail--;
+            } else if (!Character.isLetterOrDigit(cEnd)) {
+                end--;
             } else {
-                if (Character.toLowerCase(cHead) != Character.toLowerCase(cTail)) { // 相同事物才能进行比较。
+                if (Character.toLowerCase(cHead) != Character.toLowerCase(cEnd)) {
                     return false;
                 }
                 head++;
-                tail--;
+                end--;
             }
         }
         return true;
