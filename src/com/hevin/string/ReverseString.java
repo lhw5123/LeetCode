@@ -14,10 +14,11 @@ public class ReverseString {
         int right = s.length() - 1;
 
         char buf;
-        while (left <= right) {
+        while (left < right) {
             buf = result[left];
             result[left] = result[right];
             result[right] = buf;
+
             left++;
             right--;
         }

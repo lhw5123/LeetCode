@@ -32,6 +32,11 @@ public class DetectCapital {
         return (firstIsCapital && capitals == 1) || capitals == word.length() || capitals == 0;
     }
 
+    /**
+     * 对于字符串模式匹配的问题，都可以考虑用正则表达式求解。
+     * @param word 待检测字符串
+     * @return  是否符合规则
+     */
     public boolean detectCapitalsUse2(String word) {
         return word.matches("[A-Z]*|[A-Z]?[a-z]*");
     }
