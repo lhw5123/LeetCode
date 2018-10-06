@@ -1,33 +1,39 @@
 package com.hevin.List;
 
 /**
- * You are given two linked lists representing two non-negative numbers.
- * The digits are stored in reverse order and each of their nodes contain a single digit.
- * Add the two numbers and return it as a linked list.
+ * 给定两个非空链表来表示两个非负整数。位数按照逆序方式存储，它们的每个节点只存储单个数字。将两数相加返回一个新的链表。
  * <p>
- * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
- * Output: 7 -> 0 -> 8
+ * 你可以假设除了数字 0 之外，这两个数字都不会以零开头。
+ * <p>
+ * 示例：
+ * <p>
+ * 输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)
+ * 输出：7 -> 0 -> 8
+ * 原因：342 + 465 = 807
  */
 public class AddTwoNumbers {
-    public ListNode addTwoNumbers(ListNode node1, ListNode node2) {
-        ListNode pre = new ListNode(0);
-        ListNode cur = pre;
-
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head = new ListNode(0);
+        ListNode p = l1, q = l2, cur = head;
         int carry = 0;
-
-        // carry != 0 用于判断最后一位数字相加是否大于 10 而增加一位。
-        while (node1 != null || node2 != null || carry != 0) {
-            int v1 = node1 == null ? 0 : node1.val;
-            int v2 = node2 == null ? 0 : node2.val;
-            int sum = v1 + v2 + carry;
+        while (null != p || null != q) {
+            int x = null == p ? 0 : p.val;
+            int y = null == q ? 0 : q.val;
+            int sum = x + y + carry;
             carry = sum / 10;
             cur.next = new ListNode(sum % 10);
             cur = cur.next;
-            node1 = node1 == null ? null : node1.next;
-            node2 = node2 == null ? null : node2.next;
+            if (null != p) {
+                p = p.next;
+            }
+            if (null != q) {
+                q = q.next;
+            }
         }
-
-        return pre.next;
+        if (carry > 0) {
+            cur.next = new ListNode(carry);
+        }
+        return head.next;
     }
 
     private static class ListNode {
