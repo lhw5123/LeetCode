@@ -42,6 +42,7 @@ func (this *LRUCache) Put(key int, value int) {
 		this.Add(node)
 	}
 
+	// Note: LRU cache 容量是一定的，如果超过了容量，就淘汰列表最后的元素。
 	if len(this.Keys) > this.Cap {
 		delete(this.Keys, this.tail.Key)
 		this.Remove(this.tail)
@@ -62,6 +63,7 @@ func (this *LRUCache) Add(node *Node) {
 	}
 }
 
+// 从链表中移除一个结点
 func (this *LRUCache) Remove(node *Node) {
 	if node == this.head {
 		this.head = node.Next

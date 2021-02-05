@@ -19,7 +19,7 @@ func zigzagLevelOrder(root *TreeNode) [][]int {
 	return res
 }
 
-// 递归解法
+// 先根遍历
 func search(root *TreeNode, depth int, res *[][]int) {
 	if root == nil {
 		return

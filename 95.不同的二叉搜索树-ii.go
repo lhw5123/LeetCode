@@ -27,7 +27,7 @@ func genBSTree(start, end int) []*TreeNode {
 		return tree
 	}
 
-	for i := start; i <= end; i++ {
+	for i := start; i <= end; i++ { // 以 i 为根结点去求出左子树和右子树
 		left := genBSTree(start, i-1)
 		right := genBSTree(i+1, end)
 		for _, l := range left {
