@@ -43,13 +43,15 @@ function list2tree(list, path) {
         }
 
         // 用不在 {levels} 中的属性创建一个新对象，添加到 {cur.children} 中
-        let user = {}
-        for (let key in item) {
-            if (!levels.includes(key)) {
-                user[key] = item[key]
+        if (levels.length < Object.keys(item)) {
+            let obj = {}
+            for (let key in item) {
+                if (!levels.includes(key)) {
+                    obj[key] = item[key]
+                }
             }
+            cur.children.push(obj)
         }
-        cur.children.push(user)
     })
 
     return res

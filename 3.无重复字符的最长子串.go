@@ -6,25 +6,31 @@
 
 // @lc code=start
 // tag: 滑动窗口
+// 返回的是最长字串的长度
+// 思考路径：
+// 首先想到滑动窗口，即定义 left, right 两个指针，[left, right) 即为 window。
+// 再思考什么情况会使 window 扩大和缩小。
 func lengthOfLongestSubstring(s string) int {
 	if len(s) == 0 {
 		return 0
 	}
 
-	var freq [256]int // 用来统计字符的出现次数
-	res, left, right := 0, 0, -1
+	left, right := 0, 0 // 若都初始化为 0，则窗口部分为 [left, right)。如果是这样，那 window 的长度就是 right-left
+	result := 0
+	table := make([]int, 256)
+
 	for left < len(s) {
-		if right+1 < len(s) && freq[s[right+1]-'a'] == 0 {
-			freq[s[right+1]-'a']++
+		if right < len(s) && table[s[right]-'a'] == 0 {
+			table[s[right]-'a']++
 			right++
 		} else {
-			freq[s[left]-'a']--
+			table[s[left]-'a']--
 			left++
 		}
-		res = max(res, right-left+1)
+		result = max(result, right-left)
 	}
 
-	return res
+	return result
 }
 
 func max(a, b int) int {
