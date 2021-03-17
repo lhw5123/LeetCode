@@ -1,90 +1,44 @@
-/*
- * @lc app=leetcode.cn id=146 lang=golang
- *
- * [146] LRU 缓存机制
- */
 
-// @lc code=start
-// 原理：实现 linked-hashmap
+import "container/list"
+
 type LRUCache struct {
-	head, tail *Node
-	Keys       map[int]*Node
-	Cap        int
+	Cap  int
+	List *list.List
+	Keys map[int]*list.Element
 }
 
-type Node struct {
-	Key, Val  int
-	Pre, Next *Node
+type pair struct {
+	K, V int
 }
 
 func Constructor(capacity int) LRUCache {
-	return LRUCache{Keys: make(map[int]*Node), Cap: capacity}
+	return LRUCache{
+		Cap:  capacity,
+		List: list.New(),
+		Keys: make(map[int]*list.Element),
+	}
 }
 
-func (this *LRUCache) Get(key int) int {
-	if node, ok := this.Keys[key]; ok {
-		this.Remove(node)
-		this.Add(node)
-		return node.Val
+func (c *LRUCache) Get(key int) int {
+	if el, ok := c.Keys[key]; ok {
+		c.List.MoveToFront(el)
+		return el.Value.(pair).V
 	}
 	return -1
 }
 
-func (this *LRUCache) Put(key int, value int) {
-	if node, ok := this.Keys[key]; ok {
-		node.Val = value
-		this.Remove(node)
-		this.Add(node)
-		return
+func (c *LRUCache) Put(key, val int) {
+	if el, ok := c.Keys[key]; ok {
+		el.Value = pair{K: key, V: val}
+		c.List.MoveToFront(el)
 	} else {
-		node := &Node{Key: key, Val: value}
-		this.Keys[key] = node
-		this.Add(node)
+		el := c.List.PushFront(pair{K: key, V: val})
+		c.Keys[key] = el
 	}
 
-	// Note: LRU cache 容量是一定的，如果超过了容量，就淘汰列表最后的元素。
-	if len(this.Keys) > this.Cap {
-		delete(this.Keys, this.tail.Key)
-		this.Remove(this.tail)
+	if c.List.Len() > c.Cap {
+		el := c.List.Back()
+		c.List.Remove(el)
+		delete(c.Keys, el.Val.(pair).K)
 	}
 }
-
-// 插入到链表的头部
-func (this *LRUCache) Add(node *Node) {
-	node.Pre = nil
-	node.Next = this.head
-	if this.head != nil {
-		this.head.Pre = node
-	}
-	this.head = node
-	if this.tail == nil {
-		this.tail = node
-		this.tail.Next = nil
-	}
-}
-
-// 从链表中移除一个结点
-func (this *LRUCache) Remove(node *Node) {
-	if node == this.head {
-		this.head = node.Next
-		node.Next = nil
-		return
-	}
-	if node == this.tail {
-		this.tail = node.Pre
-		node.Pre = nil
-		node.Next = nil
-		return
-	}
-	node.Pre.Next = node.Next
-	node.Next.Pre = node.Pre
-}
-
-/**
- * Your LRUCache object will be instantiated and called as such:
- * obj := Constructor(capacity);
- * param_1 := obj.Get(key);
- * obj.Put(key,value);
- */
-// @lc code=end
-
