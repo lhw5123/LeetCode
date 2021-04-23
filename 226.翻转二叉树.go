@@ -13,6 +13,7 @@
  *     Right *TreeNode
  * }
  */
+// 结点访问顺序：后序遍历。
 func invertTree(root *TreeNode) *TreeNode {
 	if root != nil {
 		invertTree(root.Left)

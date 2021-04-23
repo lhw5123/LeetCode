@@ -6,7 +6,15 @@
 
 // @lc code=start
 func containsDuplicate(nums []int) bool {
-
+	record := make(map[int]bool, len(nums))
+	for _, v := range nums {
+		if _, ok := record[v]; ok {
+			return true
+		}
+		record[v] = true
+	}
+	return false
 }
+
 // @lc code=end
 

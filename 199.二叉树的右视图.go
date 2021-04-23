@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=102 lang=golang
+ * @lc app=leetcode.cn id=199 lang=golang
  *
- * [102] 二叉树的层序遍历
+ * [199] 二叉树的右视图
  */
 
 // @lc code=start
@@ -13,17 +13,17 @@
  *     Right *TreeNode
  * }
  */
-func levelOrder(root *TreeNode) [][]int {
+// 层序遍历
+func rightSideView(root *TreeNode) []int {
 	if root == nil {
-		return [][]int{}
+		return []int{}
 	}
 
 	queue := []*TreeNode{}
 	queue = append(queue, root)
-	curLevelNum, nextLevelNum := 1, 0
-	res, tmp := [][]int{}, []int{} // tmp 用来暂存每一层的结点。
-	for len(queue) > 0 {
-		if curLevelNum > 0 {
+	curNum, nextLevelNum, res, tmp := 1, 0, []int{}, []int{}
+	for len(queue) != 0 {
+		if curNum > 0 {
 			node := queue[0]
 			if node.Left != nil {
 				queue = append(queue, node.Left)
@@ -33,13 +33,13 @@ func levelOrder(root *TreeNode) [][]int {
 				queue = append(queue, node.Right)
 				nextLevelNum++
 			}
-			curLevelNum--
+			curNum--
 			tmp = append(tmp, node.Val)
 			queue = queue[1:]
 		}
-		if curLevelNum == 0 {
-			res = append(res, tmp)
-			curLevelNum = nextLevelNum
+		if curNum == 0 {
+			res = append(res, tmp[len(tmp)-1])
+			curNum = nextLevelNum
 			nextLevelNum = 0
 			tmp = []int{}
 		}

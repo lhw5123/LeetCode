@@ -34,17 +34,15 @@ func max(a, b int) int {
 
 func partation(a [][]int, low, high int) int {
 	pivot := a[high]
-	i := low
+	i := low - 1
 	for j := low; j < high; j++ {
-		start := a[j][0]
-		end := a[j][1]
-		if start < pivot[0] || (start == pivot[0] && end < pivot[1]) {
-			a[j], a[i] = a[i], a[j]
+		if a[j][0] < pivot[0] || (a[j][0] == pivot[0] && a[j][1] < pivot[1]) {
 			i++
+			a[i], a[j] = a[j], a[i]
 		}
 	}
-	a[i], a[high] = a[high], a[i]
-	return i
+	a[i+1], a[high] = a[high], a[i+1]
+	return i + 1
 }
 
 func quickSort(a [][]int, low, high int) {

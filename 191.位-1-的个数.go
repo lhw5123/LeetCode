@@ -6,15 +6,15 @@
 
 // @lc code=start
 func hammingWeight(num uint32) int {
-	count := 0
 	tmp := num
+	res := 0
 	for tmp != 0 {
 		if tmp&1 == 1 {
-			count++
+			res++
 		}
 		tmp >>= 1
 	}
-	return count
+	return res
 }
 
 // @lc code=end

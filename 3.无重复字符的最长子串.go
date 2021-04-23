@@ -11,26 +11,26 @@
 // 首先想到滑动窗口，即定义 left, right 两个指针，[left, right) 即为 window。
 // 再思考什么情况会使 window 扩大和缩小。
 func lengthOfLongestSubstring(s string) int {
-	if len(s) == 0 {
-		return 0
+	if len(s) <= 1 {
+		return len(s)
 	}
 
-	left, right := 0, 0 // 若都初始化为 0，则窗口部分为 [left, right)。如果是这样，那 window 的长度就是 right-left
-	result := 0
 	table := make([]int, 256)
-
+	left, right := 0, 0 // 滑动窗口初始大小是 0
+	res := 0
 	for left < len(s) {
 		if right < len(s) && table[s[right]-'a'] == 0 {
 			table[s[right]-'a']++
 			right++
-		} else {
+		} else { // 出现了重复字符
 			table[s[left]-'a']--
 			left++
 		}
-		result = max(result, right-left)
+
+		res = max(res, right-left)
 	}
 
-	return result
+	return res
 }
 
 func max(a, b int) int {
