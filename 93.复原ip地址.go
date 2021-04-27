@@ -46,6 +46,7 @@ func dfs(s string, segIndex, segStart int) {
 		return
 	}
 
+	// 如果以 0 开头，那这个区块就只能是“0”了。
 	if s[segStart] == '0' {
 		segments[segIndex] = 0
 		dfs(s, segIndex+1, segStart+1)
