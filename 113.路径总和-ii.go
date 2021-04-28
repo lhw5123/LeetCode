@@ -14,8 +14,8 @@
  * }
  */
 func pathSum(root *TreeNode, targetSum int) [][]int {
-	ans := [][]int{}
-	path := []int{}
+	var ans [][]int // 声明的是切片
+	var path []int
 	dfs(root, targetSum, path, &ans)
 	return ans
 }
