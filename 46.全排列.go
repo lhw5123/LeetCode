@@ -11,18 +11,16 @@ func permute(nums []int) [][]int {
 		return [][]int{}
 	}
 
-	res := [][]int{}
 	used := make([]bool, len(nums))
-	p := []int{}
-	genPermutation(nums, 0, p, &res, &used)
-	return res
+	var p []int // 用来存放当前的一组解
+	var ans [][]int
+	dfs(nums, 0, p, &ans, &used)
+	return ans
 }
 
-func genPermutation(nums []int, index int, p []int, res *[][]int, used *[]bool) {
+func dfs(nums []int, index int, p []int, ans *[][]int, used *[]bool) {
 	if index == len(nums) {
-		temp := make([]int, len(p))
-		copy(temp, p)
-		*res = append(*res, temp)
+		*ans = append(*ans, append([]int{}, p...))
 		return
 	}
 
@@ -30,12 +28,11 @@ func genPermutation(nums []int, index int, p []int, res *[][]int, used *[]bool) 
 		if !(*used)[i] {
 			(*used)[i] = true
 			p = append(p, nums[i])
-			genPermutation(nums, index+1, p, res, used)
-			p = p[:len(p)-1] // 去掉 p 中的最后一个元素
+			dfs(nums, index+1, p, ans, used)
 			(*used)[i] = false
+			p = p[:len(p)-1]
 		}
 	}
-	return
 }
 
 // @lc code=end

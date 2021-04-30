@@ -13,6 +13,7 @@ func solveNQueens(n int) [][]string {
 	// 记录某一列是否放置了皇后
 	col := make([]bool, n)
 	// 记录主对角线上的单元格是否放置了皇后
+	// 一个 n*n 的棋盘，会有 2*n-1 条对角线
 	main := make([]bool, 2*n-1)
 	// 记录副对角线上的单元格是否放置了皇后
 	sub := make([]bool, 2*n-1)
