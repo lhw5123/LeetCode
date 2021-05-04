@@ -5,24 +5,18 @@
  */
 
 // @lc code=start
-var cols, rows int
-
 func exist(board [][]byte, word string) bool {
-	cols = len(board) // 有多少行
-	if cols == 0 {
+	rows := len(board)
+	if rows == 0 {
 		return false
 	}
 
-	rows = len(board[0])
+	cols := len(board[0])
+	visited := make([]bool, rows*cols)
 
-	marked := make([][]bool, cols)
-	for i := 0; i < len(marked); i++ {
-		marked[i] = make([]bool, rows)
-	}
-
-	for i, column := range board {
-		for j := range column {
-			if dfs(&board, &marked, i, j, 0, word) {
+	for x := 0; x < cols; x++ {
+		for y := 0; y < rows; y++ {
+			if dfs(board, word, x, y, 0, rows, cols, &visited) {
 				return true
 			}
 		}
@@ -31,40 +25,41 @@ func exist(board [][]byte, word string) bool {
 	return false
 }
 
-var direction = [4][2]int{
-	{-1, 0},
-	{0, 1},
-	{1, 0},
-	{0, -1},
-}
-
-func dfs(board *[][]byte, marked *[][]bool, i, j, start int, word string) bool {
+func dfs(board [][]byte, word string, x, y, start, rows, cols int, visited *[]bool) bool {
 	if start == len(word)-1 {
-		return (*board)[i][j] == word[start]
+		return board[y][x] == word[start]
 	}
 
-	if (*board)[i][j] == word[start] {
-		(*marked)[i][j] = true
-
-		for _, d := range direction {
-			newX := i + d[0]
-			newY := j + d[1]
-			if isArea(newX, newY) && !(*marked)[newX][newY] {
-				if dfs(board, marked, newX, newY, start+1, word) {
+	if board[y][x] == word[start] {
+		index := getIndex(x, y, cols)
+		(*visited)[index] = true
+		for _, d := range directions {
+			newX := x + d[0]
+			newY := y + d[1]
+			newIndex := getIndex(newX, newY, cols)
+			if inArea(newX, newY, rows, cols) && !(*visited)[newIndex] {
+				if dfs(board, word, newX, newY, start+1, rows, cols, visited) {
 					return true
 				}
 			}
 		}
-
-		(*marked)[i][j] = false
+		(*visited)[index] = false
 	}
 
 	return false
 }
 
-func isArea(i, j int) bool {
-	return 0 <= i && i < cols && 0 <= j && j < rows
+var directions = [][]int{
+	{-1, 0},
+	{0, -1},
+	{1, 0},
+	{0, 1},
 }
 
-// @lc code=end
+func inArea(x, y, rows, cols int) bool {
+	return x >= 0 && x < cols && y >= 0 && y < rows
+}
 
+func getIndex(x, y, cols int) int {
+	return y*cols + x
+}
