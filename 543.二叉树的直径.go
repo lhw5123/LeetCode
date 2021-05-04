@@ -14,22 +14,20 @@
  * }
  */
 // DFS
-var ans = 1
-
 func diameterOfBinaryTree(root *TreeNode) int {
-	ans = 1
-	depth(root)
-	return ans - 1
+	ans := 0
+	dfs(root, &ans)
+	return ans
 }
 
-func depth(node *TreeNode) int {
+func dfs(node *TreeNode, ans *int) int {
 	if node == nil {
 		return 0
 	}
 
-	l := depth(node.Left)
-	r := depth(node.Right)
-	ans = max(ans, l+r+1)
+	l := dfs(node.Left, ans)
+	r := dfs(node.Right, ans)
+	*ans = max(*ans, l+r)
 	return max(l, r) + 1
 }
 
