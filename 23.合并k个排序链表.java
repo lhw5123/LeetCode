@@ -25,9 +25,7 @@ class Solution {
             return null;
         }
 
-        /**
-         * 构造小顶堆
-         */
+        // min-heap
         PriorityQueue<ListNode> heap = new PriorityQueue<>(lists.length, (a, b) -> (a.val - b.val));
 
         for (ListNode head : lists) {

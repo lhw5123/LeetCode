@@ -19,7 +19,7 @@ func convertToBase7(num int) string {
 	}
 
 	for tmp != 0 {
-		res = fmt.Sprintf("%d%s", tmp%7, res)
+		res = strconv.Itoa(tmp%7) + res
 		tmp /= 7
 	}
 	if negative {

@@ -6,13 +6,10 @@
 
 // @lc code=start
 func hammingWeight(num uint32) int {
-	tmp := num
 	res := 0
-	for tmp != 0 {
-		if tmp&1 == 1 {
-			res++
-		}
-		tmp >>= 1
+	for num != 0 {
+		num = num & (num - 1) // 取并的结果是将这个数的二进制最后一位不为 0 的位给置 0。
+		res++
 	}
 	return res
 }

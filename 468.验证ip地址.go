@@ -31,7 +31,7 @@ func validIPv4(IP string) string {
 			return "Neither"
 		}
 
-		// 不能有前导 0
+		// can't start with 0.
 		if string(seg[0]) == "0" && len(seg) > 1 {
 			return "Neither"
 		}

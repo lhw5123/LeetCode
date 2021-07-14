@@ -12,7 +12,6 @@ func findRedundantConnection(edges [][]int) []int {
 	for _, edge := range edges {
 		u := edge[0]
 		v := edge[1]
-
 	}
 }
 
