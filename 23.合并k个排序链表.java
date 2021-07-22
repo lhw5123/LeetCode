@@ -30,18 +30,18 @@ class Solution {
 
         for (ListNode head : lists) {
             if (head != null) {
-                heap.add(head);
+                heap.offer(head);
             }
         }
-
+        
         ListNode dumb = new ListNode(0);
         ListNode cur = dumb;
         while (!heap.isEmpty()) {
             ListNode p = heap.poll();
             cur.next = p;
-            cur = p;
+            cur = cur.next;
             if (p.next != null) {
-                heap.add(p.next);
+                heap.offer(p.next);
             }
         }
 
