@@ -52,6 +52,7 @@ class Solution {
         if (left > right) {
             return null;
         }
+        // 先构建左子树，构建完成后 mHead 自然就指向了中间结点。
         int mid = left + (right - left) / 2;
         TreeNode root = new TreeNode();
         root.left = buildTree(left, mid - 1);
