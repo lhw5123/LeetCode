@@ -20,8 +20,32 @@
  *     Right *TreeNode
  * }
  */
-func sortedListToBST(head *ListNode) *TreeNode {
+var gHead *ListNode
 
+func sortedListToBST(head *ListNode) *TreeNode {
+	gHead = head
+	len := 0
+	p := head
+	for p != nil {
+		len++
+		p = p.Next
+	}
+	return buildTree(0, len-1)
 }
+
+func buildTree(left, right int) *TreeNode {
+	if left > right {
+		return nil
+	}
+
+	mid := left + (right-left)/2
+	root := &TreeNode{}
+	root.Left = buildTree(left, mid-1)
+	root.Val = gHead.Val
+	gHead = gHead.Next
+	root.Right = buildTree(mid+1, right)
+	return root
+}
+
 // @lc code=end
 
