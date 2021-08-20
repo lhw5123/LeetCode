@@ -26,7 +26,7 @@ class Solution {
             while (window.get(c) > 1) {
                 Character d = s.charAt(left);
                 left++;
-                window.put(d, window.getOrDefault(d, 0) - 1);
+                window.put(d, window.get(d) - 1);
             }
 
             res = Math.max(right - left, res);

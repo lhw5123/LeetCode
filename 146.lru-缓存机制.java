@@ -11,8 +11,6 @@ import java.util.Map;
  */
 
 // @lc code=start
-// 目前这个解法会超时。
-// 如果不想自己实现双向列表，可能就只能选择直接用 LinkedHashMap 了。
 class Node {
     public int key;
     public int val;

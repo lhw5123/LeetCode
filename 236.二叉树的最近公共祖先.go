@@ -13,6 +13,7 @@
  *     Right *ListNode
  * }
  */
+// 最近公共祖先，表示 p，q 必须分布在它的异侧。
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	if root == nil || root == p || root == q {
 		return root
