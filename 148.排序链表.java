@@ -28,7 +28,6 @@ class Solution {
         for (int subLen = 1; subLen < len; subLen *= 2) {
             ListNode pre = dummyHead, cur = dummyHead.next;
             while (cur != null) {
-                // 构造第一个链表
                 ListNode head1 = cur;
                 for (int i = 1; i < subLen && cur.next != null; i++) {
                     cur = cur.next;
@@ -37,7 +36,6 @@ class Solution {
                 cur.next = null;
                 cur = head2;
 
-                // 构造第二个链表
                 for (int i = 1; i < subLen && cur != null && cur.next != null; i++) {
                     cur = cur.next;
                 }
@@ -60,19 +58,18 @@ class Solution {
 
     // 21. 合并两个有序链表
     private ListNode merge(ListNode l1, ListNode l2) {
-        ListNode l = new ListNode(0);
-        ListNode p = l, temp1 = l1, temp2 = l2;
-        while (temp1 != null && temp2 != null) {
-            if (temp1.val <= temp2.val) {
-                p.next = temp1;
-                temp1 = temp1.next;
+        ListNode l = new ListNode(0), p = l;
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                p.next = l1;
+                l1 = l1.next;
             } else {
-                p.next = temp2;
-                temp2 = temp2.next;
+                p.next = l2;
+                l2 = l2.next;
             }
             p = p.next;
         }
-        p.next = temp1 == null ? temp2 : temp1;
+        p.next = l1 == null ? l2 : l1;
         return l.next;
     }
 }
