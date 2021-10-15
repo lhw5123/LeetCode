@@ -32,7 +32,7 @@ func max(a, b int) int {
 	return b
 }
 
-func partation(a [][]int, low, high int) int {
+func partition(a [][]int, low, high int) int {
 	pivot := a[high]
 	i := low - 1
 	for j := low; j < high; j++ {
@@ -50,7 +50,7 @@ func quickSort(a [][]int, low, high int) {
 		return
 	}
 
-	p := partation(a, low, high)
+	p := partition(a, low, high)
 	quickSort(a, low, p-1)
 	quickSort(a, p+1, high)
 }
