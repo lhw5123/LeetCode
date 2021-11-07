@@ -9,11 +9,11 @@ import java.util.LinkedHashSet;
 
 // @lc code=start
 class LFUCache {
-    HashMap<Integer, Integer> keyToVal;
-    HashMap<Integer, Integer> keyToFreq;
-    HashMap<Integer, LinkedHashSet<Integer>> freqToKeys;
-    int minFreq;
-    int cap;
+    private HashMap<Integer, Integer> keyToVal;
+    private HashMap<Integer, Integer> keyToFreq;
+    private HashMap<Integer, LinkedHashSet<Integer>> freqToKeys;
+    private int minFreq;
+    private int cap;
 
     public LFUCache(int capacity) {
         this.keyToVal = new HashMap<>();
