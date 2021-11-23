@@ -44,7 +44,7 @@ class Solution {
             return false;
         }
 
-        int rev = 0;    // rev 是反转之后的后半部分。
+        int rev = 0;
         while (rev < x) {
             rev = rev * 10 + x % 10;
             x /= 10;

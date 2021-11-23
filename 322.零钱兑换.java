@@ -8,6 +8,7 @@
 class Solution {
     public int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
+        // 注意：dp[0] 一定要是 0
         for (int i = 1; i < dp.length; i++) {
             dp[i] = amount + 1;
         }

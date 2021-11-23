@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /*
  * @lc app=leetcode.cn id=199 lang=java
@@ -30,6 +31,7 @@ class Solution {
         }
 
         TreeNode p = root;
+        // 用 ArrayList 要比 LinkedList 快很多。
         List<TreeNode> queue = new ArrayList<>();
         queue.add(p);
         while (!queue.isEmpty()) {

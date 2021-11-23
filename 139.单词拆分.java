@@ -16,7 +16,7 @@ class Solution {
         dp[0] = true;   // dp[i] 表示 0 - (i-1) 的字符是 wordDict 中的单词。
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 0; j < i; j++) {   // j:单词的分割点。
-                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+                if (dp[j] && wordDictSet.contains(s.substring(j, i))) { // substring 的范围 [j, i)
                     dp[i] = true;
                     break;
                 }

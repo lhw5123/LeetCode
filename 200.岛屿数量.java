@@ -34,6 +34,7 @@ class Solution {
     }
 
     // Note: 连成一片的算一个岛。
+    // 这个函数的主要作用是标记 visited[][]
     private void searchIslands(char[][] grid, int[][] visited, int x, int y) {
         visited[y][x] = 1;
         for (int i = 0; i < 4; i++) {

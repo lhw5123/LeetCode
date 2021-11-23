@@ -6,10 +6,11 @@
 
 // @lc code=start
 class Solution {
+    // 子序列不需要连续。
     public int lengthOfLIS(int[] nums) {
+        int res = 1;
         int n = nums.length;
         int[] dp = new int[n];
-        int res = 1;
         for (int i = 0; i < n; i++) {
             dp[i] = 1;
         }

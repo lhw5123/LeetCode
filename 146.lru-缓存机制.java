@@ -24,7 +24,8 @@ class Node {
 class LRUCache {
     private int cap;
     private Map<Integer, Node> map;
-    private LinkedList<Node> list;  // 保存的是所有的 key。
+    // 设定只能从尾部插入，头部删除。
+    private LinkedList<Node> list;
 
     public LRUCache(int capacity) {
         cap = capacity;
@@ -38,25 +39,25 @@ class LRUCache {
             return -1;
         }
         list.remove(node);
-        list.addFirst(node);
+        list.add(node);
         return node.val;
     }
     
     public void put(int key, int value) {
-        // 修改已存在 node 中的值，并将其已到链表前部。
         Node node = map.get(key);
         if (node != null) {
+            // 修改已存在 node 中的值，并将其重新插入到链表尾部。
             list.remove(node);
             node.val = value;
-            list.addFirst(node);
+            list.add(node);
         } else {
             node = new Node(key, value);
             map.put(key, node);
-            list.addFirst(node);
+            list.add(node);
             if (list.size() > cap) {
-                Node last = list.pollLast();
-                if (last != null) {
-                    map.remove(last.key);
+                Node first = list.removeFirst();
+                if (first != null) {
+                    map.remove(first.key);
                 }
             }
         }

@@ -13,7 +13,7 @@
  *     Right *ListNode
  * }
  */
-// 最近公共祖先，表示 p，q 必须分布在它的异侧。
+// 后序遍历。也就意味着从下往上遍历，因此遇到的第一个公共祖先，一定是最近公共祖先。
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	if root == nil || root == p || root == q {
 		return root
@@ -21,10 +21,10 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 
 	left := lowestCommonAncestor(root.Left, p, q)
 	right := lowestCommonAncestor(root.Right, p, q)
+	if left != nil && right != nil {
+		return root
+	}
 	if left != nil {
-		if right != nil {
-			return root
-		}
 		return left
 	}
 	return right

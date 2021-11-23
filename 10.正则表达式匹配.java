@@ -23,6 +23,7 @@ class Solution {
         }
 
         if (i == m) {
+            // 字符串 s 已经匹配完了，但 p 还有剩余，则必须是 'a*a*...' 这样的格式。
             if ((n - j) % 2 == 1) {
                 return false;
             }
