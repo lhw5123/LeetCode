@@ -19,6 +19,7 @@ class Solution {
     // 递归
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode p = head;
+        // 移动 k 次之后，p 就指向第 k+1 个节点
         for (int i = 0; i < k; i++) {
             if (p == null) {
                 return head;
@@ -30,6 +31,7 @@ class Solution {
         return newHead;
     }
 
+    // last 是不参与这次翻转的，因此可以理解为是下一段的头结点。
     public ListNode reverse(ListNode first, ListNode last) {
         ListNode prev = null;
         ListNode cur = first;
