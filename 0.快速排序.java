@@ -8,9 +8,9 @@ class Solution {
         if (left >= right) {
             return;
         }
-        int pivot = nums[left];
         int i = left;
         int j = right;
+        int pivot = nums[i];
         while (i < j) {
             while (i < j && nums[j] >= pivot) {
                 j--;

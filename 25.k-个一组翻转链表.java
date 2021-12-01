@@ -31,7 +31,7 @@ class Solution {
         return newHead;
     }
 
-    // last 是不参与这次翻转的，因此可以理解为是下一段的头结点。
+    // last 是不参与这次翻转的，可以理解为是下一段的头结点。
     public ListNode reverse(ListNode first, ListNode last) {
         ListNode prev = null;
         ListNode cur = first;

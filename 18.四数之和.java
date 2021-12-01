@@ -17,6 +17,7 @@ class Solution {
     }
 
     // @param nums 必须是一个有序数组
+    // @param n 几数之和
     private List<List<Integer>> nSum(int[] nums, int n, int start, int target) {
         int len = nums.length;
         if (n < 2 || len < n) {
