@@ -15,6 +15,7 @@
  * }
  */
 class Solution {
+    // 后序遍历
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
