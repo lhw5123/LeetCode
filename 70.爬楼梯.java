@@ -37,22 +37,22 @@
  * 
  */
 class Solution {
+    // 不要用递归实现，递归的效率非常的低。
     public int climbStairs(int n) {
-        // 类似斐波那契数列。   
         if (n == 1) {
             return 1;
         }
         if (n == 2) {
             return 2;
         }
-        int t1 = 1, t2 = 2;
-        while (n >= 2) {
-            int tmp = t2;           
-            t2 = t1 + t2;
-            t1 = tmp;
+        int d1 = 1, d2 = 2;
+        while (n > 2) {
+            int d3 = d1 + d2;
+            d1 = d2;
+            d2 = d3;
             n--;
         }
-        return t1;
+        return d2;
     }
 }
 
