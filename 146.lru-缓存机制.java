@@ -8,12 +8,14 @@ import java.util.Map;
  * @lc app=leetcode.cn id=146 lang=java
  *
  * [146] LRU 缓存机制
+ * 自己实现双向链表，效率会好很多。
  */
 
 // @lc code=start
 class Node {
-    public int key;
-    public int val;
+    int key;
+    int val;
+    Node prev, next;
 
     public Node(int k, int v) {
         key = k;
@@ -24,13 +26,15 @@ class Node {
 class LRUCache {
     private int cap;
     private Map<Integer, Node> map;
-    // 设定只能从尾部插入，头部删除。
-    private LinkedList<Node> list;
+    Node head, tail;
 
     public LRUCache(int capacity) {
         cap = capacity;
         map = new HashMap<Integer, Node>();
-        list = new LinkedList<Node>();
+        head = new Node(0, 0);
+        tail = new Node(0, 0);
+        head.next = tail;
+        tail.prev = head;
     }
     
     public int get(int key) {
@@ -38,29 +42,40 @@ class LRUCache {
         if (node == null) {
             return -1;
         }
-        list.remove(node);
-        list.add(node);
+        remove(node);
+        add(node);
         return node.val;
     }
     
     public void put(int key, int value) {
-        Node node = map.get(key);
-        if (node != null) {
-            // 修改已存在 node 中的值，并将其重新插入到链表尾部。
-            list.remove(node);
-            node.val = value;
-            list.add(node);
-        } else {
-            node = new Node(key, value);
-            map.put(key, node);
-            list.add(node);
-            if (list.size() > cap) {
-                Node first = list.removeFirst();
-                if (first != null) {
-                    map.remove(first.key);
-                }
-            }
+        if (map.containsKey(key)) {
+            remove(map.get(key));
         }
+        Node node = new Node(key, value);
+        map.put(key, node);
+        add(node);
+
+        if (map.size() > cap) {
+            Node last = tail.prev;
+            remove(last);
+            map.remove(last.key);
+        }
+    }
+
+    // 头插
+    private void add(Node node) {
+        Node next = head.next;
+        next.prev = node;
+        node.prev = head;
+        node.next = next;
+        head.next = node;
+    }
+
+    private void remove(Node node) {
+        Node prev = node.prev;
+        Node next = node.next;
+        prev.next = next;
+        next.prev = prev;
     }
 }
 
