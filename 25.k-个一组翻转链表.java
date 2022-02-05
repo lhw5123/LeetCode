@@ -19,7 +19,6 @@ class Solution {
     // 递归
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode p = head;
-        // 移动 k 次之后，p 就指向第 k+1 个节点
         for (int i = 0; i < k; i++) {
             if (p == null) {
                 return head;

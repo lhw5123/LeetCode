@@ -16,6 +16,7 @@
  * }
  */
 class Solution {
+    // 先找到中间结点，然后翻转后半链表，再合并两个链表。
     public void reorderList(ListNode head) {
         if (head == null) {
             return;
@@ -30,6 +31,7 @@ class Solution {
     }
 
     private ListNode getMiddleNode(ListNode head) {
+        // 快慢指针
         ListNode slow = head, fast = head;
         while (fast.next != null && fast.next.next != null) {
             slow = slow.next;

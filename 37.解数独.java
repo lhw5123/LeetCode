@@ -12,9 +12,11 @@ class Solution {
 
     private boolean backtrack(char[][] board, int x, int y) {
         int rows = 9, cols = 9;
+        // 遍历到了最后一列，前进到下一行的开头。
         if (x == cols) {
             return backtrack(board, 0, y + 1);
         }
+        // 找到了一组解。
         if (y == rows) {
             return true;
         }

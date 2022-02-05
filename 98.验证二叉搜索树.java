@@ -33,17 +33,18 @@ class Solution {
         }
 
         Deque<TreeNode> stack = new LinkedList<>();
-        double inorder = -Double.MAX_VALUE;
+        double inOrder = -Double.MAX_VALUE;
         while (!stack.isEmpty() || root != null) {
             while (root != null) {
                 stack.push(root);
                 root = root.left;
             }
+
             root = stack.pop();
-            if (root.val <= inorder) {
+            if (root.val <= inOrder) {
                 return false;
             }
-            inorder = root.val;
+            inOrder = root.val;
             root = root.right;
         }
         return true;
