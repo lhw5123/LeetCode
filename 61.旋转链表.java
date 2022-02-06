@@ -46,7 +46,7 @@ class Solution {
         return size;
     }
 
-    // 表示从第 k 个节点之后断开链表
+    // 表示从第 k + 1 个节点之后断开链表
     private ListNode findCuttingPoint(ListNode head, int k) {
         ListNode cur = head;
         for (int i = 0; i < k; i++) {
