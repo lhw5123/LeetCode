@@ -8,6 +8,8 @@
 class Solution {
     public void moveZeroes(int[] nums) {
         int len = nums.length;
+        // left: 最后一个不是 0 的位置
+        // right: 正常的遍历指针
         int left = 0, right = 0;
         while (right < len) {
             if (nums[right] != 0) {
