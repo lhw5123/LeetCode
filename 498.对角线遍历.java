@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /*
  * @lc app=leetcode.cn id=498 lang=java
  *
@@ -13,34 +17,29 @@ class Solution {
 
         int rows = mat.length;
         int cols = mat[0].length;
-        int x = 0, y = 0;
-        int direction = 1;  // 1: 向右上；0: 向左下。
-        int[] res = new int[rows * cols];
-        int r = 0;
-        while (x < cols && y < rows) {
-            res[r] = mat[y][x];
-            r++;
+        int[] ans = new int[rows * cols];
+        int k = 0;
+        // 从第一行开始到最后一列，每一个元素都延左对角线遍历。
+        for (int i = 0; i < rows + cols - 1; i++) {
+            int x = i < cols ? i : cols - 1;
+            int y = i < cols ? 0 : i - cols + 1;
 
-            int new_x = x + (direction == 1 ? 1 : -1);
-            int new_y = y + (direction == 1 ? -1 : 1);
-            // 判断在不在边界内。
-            if (new_x < 0 || new_x == cols || new_y < 0 || new_y == rows) {
-                if (direction == 1) {
-                    y += (x == cols - 1 ? 1 : 0);
-                    x += (x < cols - 1 ? 1 : 0);
-                } else {
-                    x += (y == rows - 1 ? 1 : 0);
-                    y += (y < rows - 1 ? 1 : 0);
-                }
+            List<Integer> line = new ArrayList<>();
+            while (x >= 0 && y < rows) {
+                line.add(mat[y][x]);
+                x--;
+                y++;
+            }
 
-                // Flip the direction.
-                direction = 1 - direction;
-            } else {
-                x = new_x;
-                y = new_y;
+            if (i % 2 == 0) {
+                Collections.reverse(line);
+            }
+            for (int j = 0; j < line.size(); j++) {
+                ans[k] = line.get(j);
+                k++;
             }
         }
-        return res;
+        return ans;
     }
 }
 // @lc code=end
