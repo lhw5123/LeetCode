@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import javax.sound.sampled.SourceDataLine;
 
 /*
  * @lc app=leetcode.cn id=18 lang=java
@@ -49,7 +49,7 @@ class Solution {
                 }
             }
         } else {
-            // n > 2 时，递归计算 (n-1)sum 的结果
+            // n > 2 时，递归计算 (n-1)Sum 的结果
             for (int i = start; i < len; i++) {
                 List<List<Integer>> sub = nSum(nums, n - 1, i + 1, target - nums[i]);
                 final Integer numsI = nums[i];

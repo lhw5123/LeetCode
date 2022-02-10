@@ -1,29 +1,30 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /*
  * @lc app=leetcode.cn id=15 lang=java
  *
  * [15] 三数之和
+ * 找三个和为 0 的数
  */
 
 // @lc code=start
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(nums);
-        int len = nums.length;
-        for (int i = 0; i < len - 2; i++) {
+        for (int i = 0; i < nums.length - 2; i++) {
             int target = 0 - nums[i];
-            List<List<Integer>> twoSumRes = twoSum(nums, i + 1, target);
-            for (List<Integer> list : twoSumRes) {
-                res.add(Arrays.asList(nums[i], list.get(0), list.get(1)));
+            List<List<Integer>> twoSumAns = twoSum(nums, i + 1, target);
+            for (List<Integer> twoSum : twoSumAns) {
+                ans.add(Arrays.asList(nums[i], twoSum.get(0), twoSum.get(1)));
             }
-            while (i < len - 1 && nums[i] == nums[i + 1]) {
-                i++;
+            while (i < nums.length - 1 && nums[i] == nums[i + 1]) {
+                ++i;
             }
         }
-        return res;
+        return ans;
     }
 
     // 要保证传入的 nums 必须是有序的。

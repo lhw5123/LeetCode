@@ -1,7 +1,5 @@
-import java.awt.List;
+import java.util.List;
 import java.util.ArrayList;
-
-import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
 
 /*
  * @lc app=leetcode.cn id=54 lang=java
