@@ -1,8 +1,9 @@
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
-import javax.swing.tree.TreeNode;
+import datastruct.TreeNode;
 
 /*
  * @lc app=leetcode.cn id=144 lang=java
@@ -28,16 +29,15 @@ import javax.swing.tree.TreeNode;
  */
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
         if (root == null) {
-            return res;
+            return new ArrayList<>();
         }
 
-        TreeNode p = root;
-        Stack<TreeNode> stack = new Stack<>();
-        stack.push(p);
-        while (!stack.empty()) {
-            p = stack.pop();
+        List<Integer> res = new ArrayList<>();
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode p = stack.pop();
             res.add(p.val);
 
             if (p.right != null) {
@@ -47,7 +47,6 @@ class Solution {
                 stack.push(p.left);
             }
         }
-
         return res;
     }
 }
