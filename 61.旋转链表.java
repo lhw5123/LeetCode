@@ -1,3 +1,4 @@
+import datastruct.ListNode;
 /*
  * @lc app=leetcode.cn id=61 lang=java
  *
