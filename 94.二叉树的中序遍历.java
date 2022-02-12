@@ -3,7 +3,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.tree.TreeNode;
+import datastruct.TreeNode;
 
 /*
  * @lc app=leetcode.cn id=94 lang=java
@@ -29,20 +29,20 @@ import javax.swing.tree.TreeNode;
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
         if (root == null) {
-            return res;
+            return new ArrayList<>();
         }
 
+        List<Integer> res = new ArrayList<>();
         Deque<TreeNode> stack = new LinkedList<>();
         while (!stack.isEmpty() || root != null) {
             while (root != null) {
                 stack.push(root);
                 root = root.left;
             }
-
             root = stack.pop();
             res.add(root.val);
+            // 不要在这里判空，因为就是需要 root 为 null 来跳过上面的 while 循环
             root = root.right;
         }
         return res;
