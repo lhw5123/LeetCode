@@ -40,9 +40,9 @@ class Solution {
                 stack.push(root);
                 root = root.left;
             }
+
             root = stack.pop();
             res.add(root.val);
-            // 不要在这里判空，因为就是需要 root 为 null 来跳过上面的 while 循环
             root = root.right;
         }
         return res;
