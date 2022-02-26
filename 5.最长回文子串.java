@@ -13,34 +13,21 @@ class Solution {
         }
 
         String res = "";
-        int curLen = 0;
         for (int i = 0; i < s.length(); i++) {
-            if (isPalindrome(s, i - curLen - 1, i)) {
-                res = s.substring(i - curLen - 1, i + 1);
-                curLen += 2;
-            } else if (isPalindrome(s, i - curLen, i)) {
-                res = s.substring(i - curLen, i+ 1);
-                curLen += 1;
-            }
+            String s1 = palindrome(s, i, i);    // 回文子串长度是奇数（aba）
+            String s2 = palindrome(s, i, i + 1);    // 回文子串长度是偶数（abba）
+            res = res.length() < s1.length() ? s1 : res;
+            res = res.length() < s2.length() ? s2 : res;
         }
         return res;
     }
 
-    private boolean isPalindrome(String s, int left, int right) {
-        if (left < 0) {
-            return false;
+    private String palindrome(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
         }
-
-        while (left < right) {
-            if (s.charAt(left) == s.charAt(right)) {
-                left++;
-                right--;
-            } else {
-                return false;
-            }
-        }
-
-        return true;
+        return s.substring(left + 1, right);
     }
 }
 // @lc code=end
