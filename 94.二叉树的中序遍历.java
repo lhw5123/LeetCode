@@ -29,11 +29,11 @@ import datastruct.TreeNode;
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
         if (root == null) {
-            return new ArrayList<>();
+            return res;
         }
 
-        List<Integer> res = new ArrayList<>();
         Deque<TreeNode> stack = new LinkedList<>();
         while (!stack.isEmpty() || root != null) {
             while (root != null) {
