@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import datastruct.TreeNode;
 
 /*
  * @lc app=leetcode.cn id=105 lang=java
@@ -36,7 +37,6 @@ class Solution {
         }
 
         int lTreeLength = rootIdx;
-        int rTreeLength = inorder.length - lTreeLength - 1;
 
         int[] lin = Arrays.copyOfRange(inorder, 0, rootIdx);    // Note: 区间左闭右开
         int[] rin = Arrays.copyOfRange(inorder, rootIdx + 1, inorder.length);

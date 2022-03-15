@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import javax.swing.tree.TreeNode;
+import datastruct.TreeNode;
 
 /*
  * @lc app=leetcode.cn id=103 lang=java

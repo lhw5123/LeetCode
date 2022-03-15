@@ -1,3 +1,5 @@
+import datastruct.ListNode;
+
 /*
  * @lc app=leetcode.cn id=148 lang=java
  *
@@ -17,13 +19,7 @@ class Solution {
             return head;
         }
 
-        int len = 0;
-        ListNode p = head;
-        while (p != null) {
-            len++;
-            p = p.next;
-        }
-
+        int len = getSize(head);
         ListNode dummyHead = new ListNode(0, head);
         for (int subLen = 1; subLen < len; subLen *= 2) {
             ListNode pre = dummyHead, cur = dummyHead.next;
@@ -54,6 +50,16 @@ class Solution {
             }
         }
         return dummyHead.next;
+    }
+
+    private int getSize(ListNode head) {
+        ListNode p = head;
+        int size = 0;
+        while (p != null) {
+            p = p.next;
+            size++;
+        }
+        return size;
     }
 
     // 21. 合并两个有序链表

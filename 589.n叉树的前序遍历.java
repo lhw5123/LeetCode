@@ -1,8 +1,6 @@
 import java.util.List;
 import java.util.Stack;
 
-import org.w3c.dom.Node;
-
 /*
  * @lc app=leetcode.cn id=589 lang=java
  *

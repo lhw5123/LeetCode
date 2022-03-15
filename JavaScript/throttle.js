@@ -1,4 +1,4 @@
-// 节流函数：一段时间内只执行一次函数，如果被重复调用，则会被忽略。
+// 防抖函数：在一定时间内只执行一次函数，如果被重复调用，则重新开始计时。
 function throttle(fn, wait) {
   let pre = new Date();
   return function() {
