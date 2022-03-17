@@ -1,5 +1,8 @@
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+
+import com.sun.corba.se.impl.orbutil.graph.Node;
 
 /*
  * @lc app=leetcode.cn id=589 lang=java
@@ -30,20 +33,20 @@ class Node {
 class Solution {
     public List<Integer> preorder(Node root) {
         List<Integer> res = new ArrayList<>();
-        if (Node == null) {
-            return Node;
+        if (root == null) {
+            return res;
         }
 
         Node p = root;
-        Stack<Node> stack = new Stack<>();
+        Deque<Node> stack = new LinkedList<>();
         stack.push(p);
-        while (!stack.empty()) {
+        while (!stack.isEmpty()) {
             p = stack.pop();
-            res.add(node.val);
+            res.add(p.val);
 
             if (p.children != null) {
                 for (int i = p.children.size() - 1; i >= 0; i--) {
-                    stack.add(e)
+                    stack.push(p.children.get(i));
                 }
             }
         }
