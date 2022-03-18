@@ -26,14 +26,15 @@ class Solution {
             p = p.next;
         }
         ListNode newHead = reverse(head, p);
+        // 为什么这里是 head.next?
+        // reverse(head, p) 之后，实际 head 就到了尾部，p.prev 则变成了 newHead
         head.next = reverseKGroup(p, k);
         return newHead;
     }
 
     // last 是不参与这次翻转的，可以理解为是下一段的头结点。
     public ListNode reverse(ListNode first, ListNode last) {
-        ListNode prev = null;
-        ListNode cur = first;
+        ListNode prev = null, cur = first;
         while (cur != last) {
             ListNode next = cur.next;
             cur.next = prev;
