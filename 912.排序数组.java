@@ -14,6 +14,7 @@ class Solution {
         return nums;
     }
 
+    // 快速排序（不稳定）
     private void sort(int[] nums, int left, int right) {
         if (left >= right) {
             return;
@@ -24,10 +25,10 @@ class Solution {
         sort(nums, p + 1, right);
     }
 
+    // 时间复杂度：O(n)
     private int partition(int[] nums, int left, int right) {
+        // 因为前面已经对 nums 做了 shuffle 操作，所以这里就不需要再随机取 pivot 了。
         int pivot = nums[left];
-        // 把 i, j 定义为开区间，同时定义：
-        // [left, i) <= pivot; (j, right] > pivot
         int i = left, j = right;
         while (i < j) {
             while (i < j && nums[j] >= pivot) {

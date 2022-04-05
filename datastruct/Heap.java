@@ -17,14 +17,15 @@ public class Heap {
     }
 
     public void insert(int val) {
-        if (count >= n) {
+        if (count >= cap) {
             return;
         }
         ++count;
-        a[count] = val;
+        arr[count] = val;
         int i = count;
-        while (i / 2 > 0 && a[i] > a[i / 2]) {
-            swap(arr, i, i / 2);
+        // 因为是从 index=1 开始保存数据，因此下标 i 元素的父节点就是 i / 2
+        while (i / 2 > 0 && arr[i] > arr[i / 2]) {
+            swap(i, i / 2);
             i /= 2;
         }
     }
@@ -33,8 +34,8 @@ public class Heap {
         if (count == 0) {
             return -1;
         }
-        a[1] = a[count];
-        int max = a[count];
+        arr[1] = arr[count];
+        int max = arr[count];
         --count;
         heapify(count);
         return max;
@@ -49,10 +50,10 @@ public class Heap {
     private void heapify(int i) {
         while (true) {
             int maxPos = i;
-            if (i * 2 <= size && arr[i] < arr[i * 2]) {
+            if (i * 2 <= cap && arr[i] < arr[i * 2]) {
                 maxPos = i * 2;
             }
-            if (i * 2 + 1 <= size && arr[maxPos] < arr[i * 2 + 1]) {
+            if (i * 2 + 1 <= cap && arr[maxPos] < arr[i * 2 + 1]) {
                 maxPos = i * 2 + 1;
             }
             if (maxPos == i) {
@@ -64,7 +65,7 @@ public class Heap {
     }
 
     private void buildHeap() {
-        for (int i = size / 2; i >= 1; i--) {
+        for (int i = cap / 2; i >= 1; i--) {
             heapify(i);
         }
     }

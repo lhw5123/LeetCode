@@ -25,6 +25,8 @@ class Solution {
         return !hasCycle;
     }
 
+    // 通过每次 traverse 设置全局变量中的标识位。
+    // 以此判断有没有访问过，如果访问过就是有环。
     private void traverse(List<Integer>[] graph, int s) {
         if (onPath[s]) {
             hasCycle = true;
