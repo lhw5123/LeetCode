@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-
-import javax.swing.tree.TreeNode;
+import datastruct.*;
 
 /*
  * @lc app=leetcode.cn id=109 lang=java
@@ -35,31 +33,38 @@ import javax.swing.tree.TreeNode;
  * }
  */
 class Solution {
-    ListNode mHead;
+    ListNode cur;
 
+    // 二叉搜索树：节点值按照左中右有序。
     public TreeNode sortedListToBST(ListNode head) {
-        mHead = head;
-        int len = 0;
-        ListNode p = head;
-        while (p != null) {
-            len++;
-            p = p.next;
-        }
+        cur = head;
+        int len = listLength(head);
         return buildTree(0, len - 1);
     }
 
-    public TreeNode buildTree(int left, int right) {
+    // 中序遍历
+    private TreeNode buildTree(int left, int right) {
         if (left > right) {
             return null;
         }
-        // 先构建左子树，构建完成后 mHead 自然就指向了中间结点。
         int mid = left + (right - left) / 2;
-        TreeNode root = new TreeNode();
-        root.left = buildTree(left, mid - 1);
-        root.val = mHead.val;
-        mHead = mHead.next;
-        root.right = buildTree(mid + 1, right);
-        return root;
+        TreeNode node = new TreeNode();
+        // 先构建左子树，当构建完成时，cur 也就指向了中间结点。
+        node.left = buildTree(left, mid - 1);
+        node.val = cur.val;
+        cur = cur.next;
+        node.right = buildTree(mid + 1, right);
+        return node;
+    }
+
+    private int listLength(ListNode head) {
+        int len = 0;
+        ListNode p = head;
+        while (p != null) {
+            p = p.next;
+            len++;
+        }
+        return len;
     }
 }
 // @lc code=end
