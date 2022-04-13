@@ -68,7 +68,27 @@ class Solution {
                 dp[y][x] = Math.min(dp[y - 1][x] + grid[y][x], dp[y][x - 1] + grid[y][x]);
             }
         }
+        // 打印路径
+        dfs(dp, grid, rows - 1, cols - 1);
         return dp[rows - 1][cols - 1];
+    }
+
+    private void dfs(int[][] dp, int[][] grid, int y, int x) {
+        if (y == 0 && x == 0) {
+            System.out.printf("<-(%d,%d)", x, y);
+            System.out.println();
+        }
+        int rows = grid.length;
+        int cols = grid[0].length;
+        boolean f = (y == rows - 1 && x == cols - 1);
+        if (y >= 1 && grid[y][x] + dp[y - 1][x] == dp[y][x]) {
+            System.out.printf((f ? "" : "<-") + "(%d,%d)", x, y);
+            dfs(dp, grid, y - 1, x);
+        }
+        if (x >= 1 && grid[y][x] + dp[y][x - 1] == dp[y][x]) {
+            System.out.printf((f ? "" : "<-") + "(%d,%d)", x, y);
+            dfs(dp, grid, y, x - 1);
+        }
     }
 }
 // @lc code=end
