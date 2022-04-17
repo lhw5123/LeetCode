@@ -111,6 +111,7 @@ class Solution {
                 }
                 num = 0;
                 negative = false;
+                // 如果遇到了 ']'，就意味着当前的 NestedInteger 需要被加入到外层 NestedInteger 的嵌套列表里。
                 if (c == ']' && stack.size() > 1) {
                     NestedInteger ni = stack.pop();
                     stack.peek().add(ni);
