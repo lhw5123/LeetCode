@@ -77,7 +77,7 @@ class Solution {
         return res;
     }
 
-    // 超时解法
+    // 超时
     public int maxRotateFunction2(int[] nums) {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {

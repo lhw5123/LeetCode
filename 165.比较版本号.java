@@ -1,5 +1,3 @@
-import jdk.internal.util.xml.impl.Pair;
-
 /*
  * @lc app=leetcode.cn id=165 lang=java
  *
