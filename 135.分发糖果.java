@@ -10,6 +10,7 @@ import java.util.Arrays;
 class Solution {
     public int candy(int[] ratings) {
         // 分为从左往右和从右往左分开处理
+        // 注意分别用了两个数组来存储结果
         int len = ratings.length;
         int[] left = new int[len];
         Arrays.fill(left, 1);
