@@ -22,6 +22,7 @@ class Node {
 
 // 避免命名冲突
 class MList {
+    // head 和 tail 都是哨兵节点
     Node head, tail;
 
     MList() {
@@ -31,7 +32,7 @@ class MList {
         tail.prev = head;
     }
 
-    void add(Node node) {
+    void addFirst(Node node) {
         Node next = head.next;
         head.next = node;
         node.next = next;
@@ -44,6 +45,10 @@ class MList {
         Node next = node.next;
         prev.next = next;
         next.prev = prev;
+    }
+
+    Node last() {
+        return this.tail.prev;
     }
 }
 
@@ -64,7 +69,7 @@ class LRUCache {
             return -1;
         }
         list.remove(node);
-        list.add(node);
+        list.addFirst(node);
         return node.val;
     }
     
@@ -74,10 +79,10 @@ class LRUCache {
         }
         Node node = new Node(key, value);
         map.put(key, node);
-        list.add(node);
+        list.addFirst(node);
 
         if (map.size() > cap) {
-            Node last = list.tail.prev;
+            Node last = list.last();
             list.remove(last);
             map.remove(last.key);
         }
