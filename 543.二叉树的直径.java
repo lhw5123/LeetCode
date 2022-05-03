@@ -60,6 +60,7 @@ class Solution {
         return res;
     }
 
+    // 遇到子树问题，首先想到的是给函数设置返回值，然后在后序位置做文章
     private int dfs(TreeNode root) {
         if (root == null) {
             return 0;
@@ -67,6 +68,7 @@ class Solution {
 
         int l = dfs(root.left);
         int r = dfs(root.right);
+        // 放在后序位置执行，就可以拿到子树的返回值了
         res = Math.max(res, l + r); // 因为直径是边的数量，因此不用 + 1
         return Math.max(l, r) + 1;
     }
