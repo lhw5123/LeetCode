@@ -15,6 +15,7 @@ class Solution {
         int lo = 0, hi = nums.length - 1;
         // 转换成：从小到大排名第 k 大的元素
         k = nums.length - k;
+        // Note: 这里有等于，如果没有的话就会遗漏掉 p = lo = hi 的情况。
         while (lo <= hi) {
             int p = partition(nums, lo, hi);
             if (p < k) {
@@ -30,6 +31,7 @@ class Solution {
 
     private int partition(int[] nums, int lo, int hi) {
         if (lo >= hi) {
+            // Note: 注意这里是返回 lo，而不是 -1 之类的
             return lo;
         }
         int pivot = nums[lo];
