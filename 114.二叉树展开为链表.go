@@ -13,7 +13,7 @@
  *     Right *TreeNode
  * }
  */
-// 思路：倒序遍历：右左根。
+// 思路：后序遍历。
 // 把两边子树都变成单链的。
 func flatten(root *TreeNode) {
 	if root == nil {
