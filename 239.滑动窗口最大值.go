@@ -89,6 +89,7 @@ func maxSlidingWindow(nums []int, k int) []int {
 		if i >= k && window[0] <= i-k {
 			window = window[1:len(window)]
 		}
+		// 将 window 右边小于当前元素的全部弹出
 		for len(window) > 0 && nums[window[len(window)-1]] < v {
 			window = window[0 : len(window)-1]
 		}

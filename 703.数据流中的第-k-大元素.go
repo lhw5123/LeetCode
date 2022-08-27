@@ -51,5 +51,5 @@ func (this *KthLargest) Push(v interface{}) {
  * obj := Constructor(k, nums);
  * param_1 := obj.Add(val);
  */
-// @lc code=end
+/ @lc code=end
 
