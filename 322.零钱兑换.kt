@@ -14,7 +14,7 @@ class Solution {
      * 思路：动态规划，即通过子问题的最优解得到整个问题的最优解。
      * 
      * @param coins: 具有的硬币种类。
-     * @param amount: 要组成的总面额。
+     * @param amount: 要组成的总面额。
      */
     fun coinChange(coins: IntArray, amount: Int): Int {
         // dp[i] 代表组成 i 元钱所需的最少硬币个数。
