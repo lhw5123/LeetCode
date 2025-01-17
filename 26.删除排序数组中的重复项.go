@@ -10,19 +10,15 @@ func removeDuplicates(nums []int) int {
 		return 0
 	}
 
-	last, finder := 0, 0
-	for last < len(nums)-1 {
-		for nums[last] == nums[finder] {
-			finder++
-			if finder == len(nums) {
-				return last + 1
-			}
+	slow := 1
+	for i := 1; i < len(nums); i++ {
+		if nums[i] != nums[slow-1] {
+			nums[slow] = nums[i]
+			slow++
 		}
-		nums[last+1] = nums[finder]
-		last++
 	}
 
-	return last + 1
+	return slow
 }
 
 // @lc code=end
