@@ -30,7 +30,20 @@ func isValidSudoku(board [][]byte) bool {
 				continue
 			}
 
-			boxIndex := (y/3)*3 + x/3
+			boxIndex := (y/3)*3 + x/3 // boxIndex 表示是第几个矩阵
+			/*
+				    0 0 0 | 1 1 1 | 2 2 2
+					0 0 0 | 1 1 1 | 2 2 2
+					0 0 0 | 1 1 1 | 2 2 2
+					---------------------
+					3 3 3 | 4 4 4 | 5 5 5
+					3 3 3 | 4 4 4 | 5 5 5
+					3 3 3 | 4 4 4 | 5 5 5
+					---------------------
+					6 6 6 | 7 7 7 | 8 8 8
+					6 6 6 | 7 7 7 | 8 8 8
+					6 6 6 | 7 7 7 | 8 8 8
+			*/
 
 			if rows[y][num] || cols[x][num] || boxes[boxIndex][num] {
 				return false
