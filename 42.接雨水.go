@@ -48,25 +48,26 @@
 
 // @lc code=start
 func trap(height []int) int {
-	l, r := 0, len(height)-1
-	lMax, rMax := height[l], height[r]
-	res := 0
-	for l < r {
-		if height[l] > lMax {
-			lMax = height[l]
-		}
-		if height[r] > rMax {
-			rMax = height[r]
-		}
+	var (
+		res      = 0
+		left     = 0
+		right    = len(height) - 1
+		leftMax  = 0
+		rightMax = 0
+	)
 
-		if rMax > lMax {
-			res += (lMax - height[l])
-			l++
+	for left <= right {
+		leftMax = max(leftMax, height[left])
+		rightMax = max(rightMax, height[right])
+		if leftMax <= rightMax {
+			res += (leftMax - height[left])
+			left++
 		} else {
-			res += (rMax - height[r])
-			r--
+			res += (rightMax - height[right])
+			right--
 		}
 	}
+
 	return res
 }
 
