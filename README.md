@@ -1,2 +1,5 @@
 # LeetCode
-LeetCode题解
+
+LeetCode 题解
+
+Only use for personally.
