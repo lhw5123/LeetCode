@@ -17,6 +17,7 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	prev := dummy
 
 	for {
+		// prev: 每一组头节点的前一个位置
 		node := prev.Next
 		for i := 0; i < k; i++ {
 			if node == nil {
@@ -33,7 +34,8 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 			curr = next
 			next = temp
 		}
-
+		// 在翻转组内所有节点之后，prev 指向的节点就是当前组的最后一个节点，也就是 curr。
+		// 而 next 就是下一组的头节点。
 		// set `prev` to next section starter
 		temp := prev.Next
 		prev.Next.Next = next
