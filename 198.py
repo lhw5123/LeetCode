@@ -15,7 +15,7 @@ class Solution:
         # return dfs(n - 1)
 
         f0 = f1 = 0
-        for _, v in enumerate(nums):
+        for v in nums:
             f_new = max(f1, f0 + v)
             f0 = f1
             f1 = f_new
