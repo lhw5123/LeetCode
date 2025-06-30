@@ -65,26 +65,49 @@ func removeZeroSumSublists(head *ListNode) *ListNode {
 	sum, sumMap, cur := 0, make(map[int]*ListNode), head
 	sumMap[0] = nil
 	for cur != nil {
-		sum += cur.Val
-		if ptr, ok := sumMap[sum]; ok {
-			// 在字典中找到了重复的和，代表 [ptr, cur] 中间的是和为 0 的段，我们要删除的就是这段。
-			if ptr != nil {
+		sum += cur.Val // 从 head 到当前元素值的和
+		// 如果链表中间有一段总和为 0 的连续节点[start,end]，那 sum(list[:start]) 就会等于 sum(list[:end+1])
+		if ptr, ok := sumMap[sum]; !ok {
+			sumMap[sum] = cur
+		} else {
+			// [ptr, cur] 之间节点的和为零。
+			if ptr == nil {
+				// 意味着是从链表头到 cur 都是要被删除的部分
+				head = cur.Next
+				sumMap = make(map[int]*ListNode)
+				sumMap[0] = nil
+			} else {
 				iter := ptr.Next
 				tmpSum := sum + iter.Val
 				for tmpSum != sum {
 					delete(sumMap, tmpSum)
 					iter = iter.Next
-					tmpSum = tmpSum + iter.Val
+					tmpSum += iter.Val
 				}
 				ptr.Next = cur.Next
-			} else {
-				head = cur.Next
-				sumMap = make(map[int]*ListNode)
-				sumMap[0] = nil
 			}
-		} else {
-			sumMap[sum] = cur
 		}
+
+		// if ptr, ok := sumMap[sum]; ok {
+		// 在字典中找到了重复的和，代表 [ptr, cur] 中间的是和为 0 的段，我们要删除的就是这段。
+		// if ptr != nil {
+		// 	iter := ptr.Next
+		// 	tmpSum := sum + iter.Val
+		// 	for tmpSum != sum {
+		// 		delete(sumMap, tmpSum)
+		// 		iter = iter.Next
+		// 		tmpSum = tmpSum + iter.Val
+		// 	}
+		// 	ptr.Next = cur.Next
+		// } else {
+		// 	head = cur.Next
+		// 	sumMap = make(map[int]*ListNode)
+		// 	sumMap[0] = nil
+		// }
+		// } else {
+		// 	sumMap[sum] = cur
+		// }
+
 		cur = cur.Next
 	}
 	return head
