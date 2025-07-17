@@ -9,7 +9,7 @@ from typing import Optional
 
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
-        prefix_sum_map = {0: 1}
+        prefix_sum_map = {0: 1} # key: 前缀和；value: 出现次数。
         self.count = 0
 
         def dfs(node: Optional[TreeNode], current_path_sum: int):
