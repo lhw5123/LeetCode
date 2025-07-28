@@ -11,7 +11,7 @@ class Solution:
 
         pre_sum = 0
         pre_sum_map = {0: -1} # the value is 1 if it is count; is -1 if it is index.
-        res = len(nums)
+        res = len(nums) # Zero can be divided by any nonzero integer, so there is at least one solution - namely, removing all elements.
         
         for i, v in enumerate(nums):
             pre_sum = (pre_sum + v) % p
