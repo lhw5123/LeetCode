@@ -11,7 +11,7 @@ class Solution:
 
         if not lists:
             return None
-        
+
         heap = []
 
         for i, lst in enumerate(lists):
